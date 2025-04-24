@@ -1,6 +1,8 @@
+from model.cliente import Cliente
+
 class ClienteDal:
     
-    def add_cliente(self, cliente):
+    def add_cliente(self, cliente: Cliente):
         with open("./data/clientes.txt", "a") as arquivo:
             arquivo.write(f"{cliente.nome};{cliente.idade};{cliente.cpf}\n")
 

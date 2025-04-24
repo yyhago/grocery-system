@@ -1,6 +1,8 @@
+from model.produto import Produto
+
 class ProdutoDal:
     
-    def add_produto(self,produto):
+    def add_produto(self,produto: Produto):
         with open("./data/produtos.txt", "a") as arquivo:
             arquivo.write(f"{produto.nome};{produto.id};{produto.preco};{produto.quantidade};{produto.categoria_id}\n")
 

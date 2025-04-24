@@ -1,6 +1,8 @@
+from model.categoria import Categoria
+
 class CategoriaDal:
 
-    def add_categoria(self, categoria):
+    def add_categoria(self, categoria: Categoria):
         with open("./data/categorias.txt", "a") as arquivo:
             arquivo.write(f"{categoria.nome};{categoria.id}\n")
 

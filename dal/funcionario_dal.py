@@ -1,6 +1,8 @@
+from model.funcionario import Funcionario
+
 class FuncionarioDal:
 
-    def add_funcionario(self, funcionario):
+    def add_funcionario(self, funcionario: Funcionario):
         with open("./data/funcionarios.txt", "a") as arquivo:
             arquivo.write(f"{funcionario.nome};{funcionario.idade};{funcionario.cpf};{funcionario.total_vendas}\n")
 

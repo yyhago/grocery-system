@@ -1,6 +1,8 @@
+from model.fornecedor import Fornecedor
+
 class FornecedorDal:
 
-    def add_fornecedor(self, fornecedor):
+    def add_fornecedor(self, fornecedor: Fornecedor):
         with open("./data/fornecedores.txt", "a") as arquivo:
             arquivo.write(f"{fornecedor.nome};{fornecedor.idade};{fornecedor.cpf}\n")
 

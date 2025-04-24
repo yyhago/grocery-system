@@ -1,6 +1,7 @@
+from model.venda import Venda
 class VendaDal:
     
-    def add_venda(self, venda):
+    def add_venda(self, venda: Venda):
         with open("./data/vendas.txt", "a") as arquivo:
             arquivo.write(f"{venda.id};{venda.produto_id};{venda.quantidade};{venda.preco_unitario};{venda.total};{venda.data};{venda.cliente_id}\n")
 
