@@ -1,11 +1,17 @@
-from model.produto import ProdutoDal
+from dal.produto_dal import ProdutoDal
+from model.produto import Produto
 
 class ProdutoController:
-
     @classmethod
-    def cadastrar_produto(cls, nome: str, id: int, preco: float, quantidade:int, categoria_id: int):
-        produto_dal = ProdutoDal()
-        return produto_dal.cadastrar_produto(nome, id, preco, quantidade, categoria_id)
+    def cadastrar_produto(cls, nome: str, id: int, preco: float, quantidade: int, categoria_id: int):
+        try:
+            produto = Produto(nome, id, preco, quantidade, categoria_id)
+            produto_dal = ProdutoDal()
+            produto_dal.add_produto(produto)
+            return True
+        except Exception as e:
+            print(f"Erro ao cadastrar produto: {e}")
+            return False
     
     @classmethod
     def listar_produtos(cls):
@@ -25,4 +31,4 @@ class ProdutoController:
     @classmethod
     def remover_produto(cls, id: int):
         produto_dal = ProdutoDal()
-        return produto_dal.remover_produto(id)    
+        return produto_dal.remover_produto(id)

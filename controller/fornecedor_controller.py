@@ -1,13 +1,14 @@
-from model.fornecedor import FornecedorDal
+from dal.fornecedor_dal import FornecedorDal
+from model.fornecedor import Fornecedor
 
 class FornecedorController:
-
     @classmethod
     def cadastrar_fornecedor(cls, nome: str, idade: int, cpf: str):
         if len(nome) > 2 and idade > 12 and len(cpf) == 11:
             try:
+                fornecedor = Fornecedor(nome, idade, cpf)
                 fornecedor_dal = FornecedorDal()
-                fornecedor_dal.add_fornecedor(nome, idade, cpf)
+                fornecedor_dal.add_fornecedor(fornecedor)
                 return True
             except Exception as e:
                 print(f"Erro ao cadastrar fornecedor: {e}")
@@ -22,7 +23,7 @@ class FornecedorController:
         return fornecedor_dal.listar_fornecedores()
 
     @classmethod
-    def buscar_fornecedor(cls, cpf: str):
+    def buscar_fornecedor_cpf(cls, cpf: str):
         fornecedor_dal = FornecedorDal()
         return fornecedor_dal.buscar_fornecedor_cpf(cpf)
     

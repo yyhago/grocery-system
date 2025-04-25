@@ -1,19 +1,20 @@
 from dal.categoria_dal import CategoriaDal
+from model.categoria import Categoria
 
 class CategoriaController:
-
     @classmethod
     def cadastrar_categoria(cls, nome: str, id: int):
         if len(nome) > 2:
             try:
+                categoria = Categoria(nome, id)
                 categoria_dal = CategoriaDal()
-                categoria_dal.add_categoria(nome, id)
+                categoria_dal.add_categoria(categoria)
                 return True
             except Exception as e:
                 print(f"Erro ao cadastrar categoria: {e}")
                 return False
         else:
-            print("Dados inválidos para cadastro")
+            print("Nome da categoria deve ter mais de 2 caracteres")
             return False
         
     @classmethod
