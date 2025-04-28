@@ -1,14 +1,20 @@
+import os
 from model.produto import Produto
 
+
 class ProdutoDal:
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    DATA_DIR = os.path.join(BASE_DIR, "data")
+
     def add_produto(self, produto: Produto):
-        with open("./data/produtos.txt", "a") as arquivo:
+        os.makedirs(self.DATA_DIR, exist_ok=True)
+        with open(os.path.join(self.DATA_DIR, "produtos.txt"), "a") as arquivo:
             arquivo.write(f"{produto.nome};{produto.id};{produto.preco};{produto.quantidade};{produto.categoria_id}\n")
 
     def listar_produtos(self):
-        produtos = []        
+        produtos = []
         try:
-            with open("./data/produtos.txt", "r") as arquivo:
+            with open(os.path.join(self.DATA_DIR, "produtos.txt"), "r") as arquivo:
                 for linha in arquivo:
                     nome, id, preco, quantidade, categoria_id = linha.strip().split(";")
                     produtos.append({
@@ -19,33 +25,34 @@ class ProdutoDal:
                         "categoria_id": categoria_id
                     })
         except FileNotFoundError:
-            pass
+            print("Arquivo produtos.txt não encontrado!")
         return produtos
-    
-    def buscar_produto_id(self, id):
+
+    def buscar_produto_id(self, id: int):
         produtos = self.listar_produtos()
         for produto in produtos:
             if produto["id"] == str(id):
                 return produto
-        return None 
-    
-    def editar_produto(self, id, novo_nome, novo_preco, nova_quantidade):
+        return None
+
+    def editar_produto(self, id: int, novo_nome: str, novo_preco: float, nova_quantidade: int):
         produtos = self.listar_produtos()
         produto_encontrado = False
         for produto in produtos:
             if produto["id"] == str(id):
                 produto["nome"] = novo_nome
-                produto["preco"] = novo_preco
-                produto["quantidade"] = nova_quantidade
+                produto["preco"] = str(novo_preco)
+                produto["quantidade"] = str(nova_quantidade)
                 produto_encontrado = True
                 break
         if produto_encontrado:
-            with open("./data/produtos.txt", "w") as arquivo:
+            with open(os.path.join(self.DATA_DIR, "produtos.txt"), "w") as arquivo:
                 for produto in produtos:
-                    arquivo.write(f"{produto['nome']};{produto['id']};{produto['preco']};{produto['quantidade']};{produto['categoria_id']}\n")
+                    arquivo.write(
+                        f"{produto['nome']};{produto['id']};{produto['preco']};{produto['quantidade']};{produto['categoria_id']}\n")
         return produto_encontrado
-    
-    def remover_produto(self, id):
+
+    def remover_produto(self, id: int):
         produtos = self.listar_produtos()
         produto_encontrado = False
         for produto in produtos:
@@ -54,7 +61,8 @@ class ProdutoDal:
                 produto_encontrado = True
                 break
         if produto_encontrado:
-            with open("./data/produtos.txt", "w") as arquivo:
+            with open(os.path.join(self.DATA_DIR, "produtos.txt"), "w") as arquivo:
                 for produto in produtos:
-                    arquivo.write(f"{produto['nome']};{produto['id']};{produto['preco']};{produto['quantidade']};{produto['categoria_id']}\n")
+                    arquivo.write(
+                        f"{produto['nome']};{produto['id']};{produto['preco']};{produto['quantidade']};{produto['categoria_id']}\n")
         return produto_encontrado

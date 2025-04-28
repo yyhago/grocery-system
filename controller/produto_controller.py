@@ -1,5 +1,7 @@
 from dal.produto_dal import ProdutoDal
 from model.produto import Produto
+from reports.relatorio_produto import RelatorioProduto
+
 
 class ProdutoController:
     @classmethod
@@ -9,10 +11,10 @@ class ProdutoController:
             produto_dal = ProdutoDal()
             produto_dal.add_produto(produto)
             return True
-        except Exception as e:
-            print(f"Erro ao cadastrar produto: {e}")
+        except (IOError, OSError) as e:
+            print(f"Erro ao acessar o arquivo: {e}")
             return False
-    
+
     @classmethod
     def listar_produtos(cls):
         produto_dal = ProdutoDal()
@@ -32,3 +34,7 @@ class ProdutoController:
     def remover_produto(cls, id: int):
         produto_dal = ProdutoDal()
         return produto_dal.remover_produto(id)
+
+    @classmethod
+    def relatorio_produto(cls):
+        RelatorioProduto.relatorio_todos_produtos()

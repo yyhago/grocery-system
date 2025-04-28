@@ -1,6 +1,7 @@
 from dal.fornecedor_dal import FornecedorDal
 from model.fornecedor import Fornecedor
 
+
 class FornecedorController:
     @classmethod
     def cadastrar_fornecedor(cls, nome: str, idade: int, cpf: str):
@@ -10,13 +11,12 @@ class FornecedorController:
                 fornecedor_dal = FornecedorDal()
                 fornecedor_dal.add_fornecedor(fornecedor)
                 return True
-            except Exception as e:
-                print(f"Erro ao cadastrar fornecedor: {e}")
+            except (IOError, OSError) as e:
+                print(f"Erro ao acessar o arquivo: {e}")
                 return False
-        else:
-            print("Dados inválidos para cadastro.")
-            return False
-        
+        print("Dados inválidos para cadastro.")
+        return False
+
     @classmethod
     def listar_fornecedores(cls):
         fornecedor_dal = FornecedorDal()
@@ -26,12 +26,12 @@ class FornecedorController:
     def buscar_fornecedor_cpf(cls, cpf: str):
         fornecedor_dal = FornecedorDal()
         return fornecedor_dal.buscar_fornecedor_cpf(cpf)
-    
+
     @classmethod
     def editar_fornecedor(cls, cpf: str, novo_nome: str, nova_idade: int, novo_cpf: str):
         fornecedor_dal = FornecedorDal()
         return fornecedor_dal.editar_fornecedor(cpf, novo_nome, nova_idade, novo_cpf)
-    
+
     @classmethod
     def remover_fornecedor(cls, cpf: str):
         fornecedor_dal = FornecedorDal()

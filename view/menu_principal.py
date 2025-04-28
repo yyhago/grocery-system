@@ -1,8 +1,8 @@
 import sys
 import os
 
-# Adiciona o diretório pai ao sys.path para importar os módulos corretamente, sem erros
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
 
 from controller.categoria_controller import CategoriaController
 from controller.produto_controller import ProdutoController
@@ -11,26 +11,28 @@ from controller.cliente_controller import ClienteController
 from controller.fornecedor_controller import FornecedorController
 from controller.funcionario_controller import FuncionarioController
 
+
 def mostrar_linha():
     print("=" * 50)
+
 
 while True:
     mostrar_linha()
     print("MENU PRINCIPAL | SISTEMA DE MERCEARIA".center(50))
     mostrar_linha()
-    
+
     print("\n1 - Sistema de Vendas")
     print("2 - Sistema de Produtos")
     print("3 - Sistema de Categorias")
     print("4 - Sistema de Fornecedores")
     print("5 - Sistema de Funcionários")
     print("6 - Sistema de Clientes")
-    print("7 - Sair do sistema\n")
-    
+    print("7 - Sistema de Relatórios")
+    print("8 - Sair do sistema\n")
+
     opcao = input("Digite a opção desejada: ")
     mostrar_linha()
 
-    # Sistema de Vendas
     if opcao == "1":
         while True:
             print("\nSISTEMA DE VENDAS")
@@ -41,7 +43,7 @@ while True:
             print("4 - Atualizar Venda")
             print("5 - Deletar Venda")
             print("6 - Voltar\n")
-            
+
             sub_opcao = input("Opção: ")
             mostrar_linha()
 
@@ -55,9 +57,9 @@ while True:
                     total = float(input("Total: "))
                     data = input("Data (dd/mm/aaaa): ")
                     cliente_id = int(input("ID do Cliente: "))
-                    
-                    if VendaController.criar_venda(id, produto_id, quantidade, 
-                                                 preco_unitario, total, data, cliente_id):
+
+                    if VendaController.criar_venda(id, produto_id, quantidade,
+                                                   preco_unitario, total, data, cliente_id):
                         print("\nVenda registrada com sucesso!")
                     else:
                         print("\nErro ao registrar venda!")
@@ -68,7 +70,7 @@ while True:
                 vendas = VendaController.listar_vendas()
                 print("\nLISTA DE VENDAS:")
                 for venda in vendas:
-                    print(f"ID: {venda['id']} | Data: {venda['data']} | Total: R${venda['total']}")
+                    print(f"ID: {venda['id']} | Data: {venda['data']} | Total: R${float(venda['total']):.2f}")
 
             elif sub_opcao == "3":
                 try:
@@ -87,9 +89,9 @@ while True:
                     nova_quantidade = int(input("Nova Quantidade: "))
                     novo_preco = float(input("Novo Preço Unitário: "))
                     novo_total = float(input("Novo Total: "))
-                    
-                    if VendaController.atualizar_venda(id, nova_quantidade, 
-                                                     novo_preco, novo_total):
+
+                    if VendaController.atualizar_venda(id, nova_quantidade,
+                                                       novo_preco, novo_total):
                         print("\nVenda atualizada com sucesso!")
                     else:
                         print("\nErro ao atualizar venda!")
@@ -113,7 +115,6 @@ while True:
                 print("Opção inválida!")
             mostrar_linha()
 
-    # Sistema de Produtos
     elif opcao == "2":
         while True:
             print("\nSISTEMA DE PRODUTOS")
@@ -124,7 +125,7 @@ while True:
             print("4 - Atualizar Produto")
             print("5 - Deletar Produto")
             print("6 - Voltar\n")
-            
+
             sub_opcao = input("Opção: ")
             mostrar_linha()
 
@@ -136,9 +137,9 @@ while True:
                     preco = float(input("Preço: "))
                     quantidade = int(input("Quantidade: "))
                     categoria_id = int(input("ID da Categoria: "))
-                    
-                    if ProdutoController.cadastrar_produto(nome, id, preco, 
-                                                         quantidade, categoria_id):
+
+                    if ProdutoController.cadastrar_produto(nome, id, preco,
+                                                           quantidade, categoria_id):
                         print("\nProduto criado com sucesso!")
                     else:
                         print("\nErro ao criar produto!")
@@ -149,7 +150,7 @@ while True:
                 produtos = ProdutoController.listar_produtos()
                 print("\nLISTA DE PRODUTOS:")
                 for produto in produtos:
-                    print(f"ID: {produto['id']} | Nome: {produto['nome']} | Preço: R${produto['preco']}")
+                    print(f"ID: {produto['id']} | Nome: {produto['nome']} | Preço: R${float(produto['preco']):.2f}")
 
             elif sub_opcao == "3":
                 try:
@@ -168,9 +169,9 @@ while True:
                     novo_nome = input("Novo Nome: ")
                     novo_preco = float(input("Novo Preço: "))
                     nova_quantidade = int(input("Nova Quantidade: "))
-                    
-                    if ProdutoController.editar_produto(id, novo_nome, 
-                                                      novo_preco, nova_quantidade):
+
+                    if ProdutoController.editar_produto(id, novo_nome,
+                                                        novo_preco, nova_quantidade):
                         print("\nProduto atualizado com sucesso!")
                     else:
                         print("\nErro ao atualizar produto!")
@@ -194,7 +195,6 @@ while True:
                 print("Opção inválida!")
             mostrar_linha()
 
-    # Sistema de Categorias
     elif opcao == "3":
         while True:
             print("\nSISTEMA DE CATEGORIAS")
@@ -205,7 +205,7 @@ while True:
             print("4 - Atualizar Categoria")
             print("5 - Deletar Categoria")
             print("6 - Voltar\n")
-            
+
             sub_opcao = input("Opção: ")
             mostrar_linha()
 
@@ -214,7 +214,7 @@ while True:
                     print("NOVA CATEGORIA:")
                     id = int(input("ID: "))
                     nome = input("Nome: ")
-                    
+
                     if CategoriaController.cadastrar_categoria(nome, id):
                         print("\nCategoria criada com sucesso!")
                     else:
@@ -243,7 +243,7 @@ while True:
                 try:
                     id = int(input("ID da Categoria: "))
                     novo_nome = input("Novo Nome: ")
-                    
+
                     if CategoriaController.editar_categoria(id, novo_nome):
                         print("\nCategoria atualizada com sucesso!")
                     else:
@@ -268,7 +268,6 @@ while True:
                 print("Opção inválida!")
             mostrar_linha()
 
-    # Sistema de Fornecedores
     elif opcao == "4":
         while True:
             print("\nSISTEMA DE FORNECEDORES")
@@ -279,7 +278,7 @@ while True:
             print("4 - Atualizar Fornecedor")
             print("5 - Deletar Fornecedor")
             print("6 - Voltar\n")
-            
+
             sub_opcao = input("Opção: ")
             mostrar_linha()
 
@@ -289,7 +288,7 @@ while True:
                     nome = input("Nome: ")
                     idade = int(input("Idade: "))
                     cpf = input("CPF (11 dígitos): ")
-                    
+
                     if FornecedorController.cadastrar_fornecedor(nome, idade, cpf):
                         print("\nFornecedor criado com sucesso!")
                     else:
@@ -317,9 +316,9 @@ while True:
                     novo_nome = input("Novo Nome: ")
                     nova_idade = int(input("Nova Idade: "))
                     novo_cpf = input("Novo CPF: ")
-                    
-                    if FornecedorController.editar_fornecedor(cpf, novo_nome, 
-                                                            nova_idade, novo_cpf):
+
+                    if FornecedorController.editar_fornecedor(cpf, novo_nome,
+                                                              nova_idade, novo_cpf):
                         print("\nFornecedor atualizado com sucesso!")
                     else:
                         print("\nErro ao atualizar fornecedor!")
@@ -340,7 +339,6 @@ while True:
                 print("Opção inválida!")
             mostrar_linha()
 
-    # Sistema de Funcionários
     elif opcao == "5":
         while True:
             print("\nSISTEMA DE FUNCIONÁRIOS")
@@ -351,7 +349,7 @@ while True:
             print("4 - Atualizar Funcionário")
             print("5 - Deletar Funcionário")
             print("6 - Voltar\n")
-            
+
             sub_opcao = input("Opção: ")
             mostrar_linha()
 
@@ -362,9 +360,9 @@ while True:
                     idade = int(input("Idade: "))
                     cpf = input("CPF (11 dígitos): ")
                     total_vendas = float(input("Total de Vendas: "))
-                    
-                    if FuncionarioController.cadastrar_funcionario(nome, idade, 
-                                                                  cpf, total_vendas):
+
+                    if FuncionarioController.cadastrar_funcionario(nome, idade,
+                                                                   cpf, total_vendas):
                         print("\nFuncionário criado com sucesso!")
                     else:
                         print("\nErro ao criar funcionário!")
@@ -375,7 +373,7 @@ while True:
                 funcionarios = FuncionarioController.listar_funcionarios()
                 print("\nLISTA DE FUNCIONÁRIOS:")
                 for funcionario in funcionarios:
-                    print(f"Nome: {funcionario['nome']} | Vendas: R${funcionario['total_vendas']}")
+                    print(f"Nome: {funcionario['nome']} | Vendas: R${float(funcionario['total_vendas']):.2f}")
 
             elif sub_opcao == "3":
                 cpf = input("CPF do Funcionário: ")
@@ -391,9 +389,9 @@ while True:
                     novo_nome = input("Novo Nome: ")
                     nova_idade = int(input("Nova Idade: "))
                     novo_total = float(input("Novo Total de Vendas: "))
-                    
-                    if FuncionarioController.editar_funcionario(cpf, novo_nome, 
-                                                              nova_idade, novo_total):
+
+                    if FuncionarioController.editar_funcionario(cpf, novo_nome,
+                                                                nova_idade, novo_total):
                         print("\nFuncionário atualizado com sucesso!")
                     else:
                         print("\nErro ao atualizar funcionário!")
@@ -414,7 +412,6 @@ while True:
                 print("Opção inválida!")
             mostrar_linha()
 
-    # Sistema de Clientes
     elif opcao == "6":
         while True:
             print("\nSISTEMA DE CLIENTES")
@@ -425,7 +422,7 @@ while True:
             print("4 - Atualizar Cliente")
             print("5 - Deletar Cliente")
             print("6 - Voltar\n")
-            
+
             sub_opcao = input("Opção: ")
             mostrar_linha()
 
@@ -435,7 +432,7 @@ while True:
                     nome = input("Nome: ")
                     idade = int(input("Idade: "))
                     cpf = input("CPF (11 dígitos): ")
-                    
+
                     if ClienteController.cadastrar_cliente(nome, idade, cpf):
                         print("\nCliente criado com sucesso!")
                     else:
@@ -462,7 +459,7 @@ while True:
                     cpf = input("CPF do Cliente: ")
                     novo_nome = input("Novo Nome: ")
                     nova_idade = int(input("Nova Idade: "))
-                    
+
                     if ClienteController.editar_cliente(cpf, novo_nome, nova_idade):
                         print("\nCliente atualizado com sucesso!")
                     else:
@@ -485,10 +482,33 @@ while True:
             mostrar_linha()
 
     elif opcao == "7":
+        while True:
+            print("\nSISTEMA DE RELATÓRIOS")
+            mostrar_linha()
+            print("1 - Relatório de Clientes")
+            print("2 - Relatório de Vendas")
+            print("3 - Relatório de Produtos")
+            print("4 - Voltar\n")
+
+            sub_opcao = input("Opção: ")
+            mostrar_linha()
+
+            if sub_opcao == "1":
+                ClienteController.relatorio_cliente()
+            elif sub_opcao == "2":
+                VendaController.relatorio_venda()
+            elif sub_opcao == "3":
+                ProdutoController.relatorio_produto()
+            elif sub_opcao == "4":
+                break
+            else:
+                print("Opção inválida!")
+            mostrar_linha()
+
+    elif opcao == "8":
         print("Saindo do sistema...")
         break
 
     else:
-        print("Opção inválida! Tente novamente.")
-
-    
+        print("Opção inválida!")
+        mostrar_linha()
