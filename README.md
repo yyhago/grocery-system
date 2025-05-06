@@ -1,122 +1,122 @@
-# Grocery Management System
+# Sistema de Gestão de Mercearia
 
-A comprehensive Python-based grocery store management system designed for managing inventory, sales, employees, and generating reports.
+Um sistema abrangente de gestão construido em Python, projetado para gerenciar estoque, vendas, funcionários e gerar relatórios.
 
-## Overview
+## Visão Geral
 
-This project is a personal study application that aims to create a complete grocery store management solution. The system manages various aspects of a grocery business including product inventory, sales transactions, customer relationships, and employee management.
+Este projeto é uma aplicação de estudo pessoal que visa criar uma solução completa de gestão de supermercados. O sistema gerencia vários aspectos de um negócio de supermercados, incluindo estoque de produtos, transações de vendas, relacionamento com clientes e gestão de funcionários.
 
-## Features
+## Recursos
 
-### Entity Management
-- **Category Management**
-  - Add/Edit/Delete product categories
-  - Organize products by category
+### Gerenciamento de Entidades
+- **Gerenciamento de Categorias**
+- Adicionar/Editar/Excluir categorias de produtos
+- Organizar produtos por categoria
 
-- **Product Management**
-  - Add/Edit/Delete products
-  - Assign products to categories
-  - Track inventory levels
+- **Gerenciamento de Produtos**
+- Adicionar/Editar/Excluir produtos
+- Atribuir produtos a categorias
+- Acompanhar os níveis de estoque
 
-- **Supplier Management**
-  - Add/Edit/Delete suppliers
-  - Track supplier information and products
+- **Gerenciamento de Fornecedores**
+- Adicionar/Editar/Excluir fornecedores
+- Acompanhar informações e produtos de fornecedores
 
-- **Customer Management**
-  - Add/Edit/Delete customer records
-  - Track customer purchase history
+- **Gerenciamento de Clientes**
+- Adicionar/Editar/Excluir registros de clientes
+- Acompanhar o histórico de compras dos clientes
 
-- **Employee Management**
-  - Add/Edit/Delete employee information
-  - Manage employee access and roles
+- **Gerenciamento de Funcionários**
+- Adicionar/Editar/Excluir informações de funcionários
+- Gerenciar acessos e funções de funcionários
 
-### Point of Sale System
-- Process customer transactions
-- Calculate totals with taxes
-- Apply discounts
-- Handle product returns
+### Sistema de Ponto de Venda
+- Processar transações de clientes
+- Calcular totais com impostos
+- Aplicar descontos
+- Gerenciar devoluções de produtos
 
-### Reporting
-- **General Sales Report**
-  - Overview of all sales transactions
-  - Total revenue metrics
+### Relatórios
+- **Relatório Geral de Vendas**
+- Visão geral de todas as transações de vendas
+- Métricas de receita total
 
-- **Sales by Date Report**
-  - Filter sales data by specific dates or date ranges
-  - Daily/Weekly/Monthly sales performance
+- **Relatório de Vendas por Data**
+- Filtrar dados de vendas por datas ou intervalos de datas específicos
+- Desempenho de vendas diário/semanal/mensal
 
-- **Best-Selling Products Report**
-  - Products ranked by sales volume
-  - Most profitable products
+- **Produtos Mais Vendidos Relatório**
+- Produtos classificados por volume de vendas
+- Produtos mais rentáveis
 
-- **Top Customers Report**
-  - Customers ranked by purchase volume
-  - Customer purchase frequency analysis
+- **Relatório de Principais Clientes**
+- Clientes classificados por volume de compras
+- Análise da frequência de compra dos clientes
 
-## Technology Stack
+## Pilha de Tecnologia
 
 - **Backend**: Python
-- **Database**: .txt
+- **Banco de Dados**: .txt
 
-## Installation
+## Instalação
 
 ```bash
-# Clone the repository
+# Clonar o repositório
 git clone https://github.com/yyhago/grocery-system.git
 
-# Navigate to the project directory
+# Navegar até o diretório do projeto
 cd grocery-system
 ```
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 MercadoManager/
 │
 ├── controller/
-│   ├── categoria_controller.py
-│   ├── produto_controller.py
-│   ├── fornecedor_controller.py
-│   ├── cliente_controller.py
-│   ├── funcionario_controller.py
-│   └── caixa_controller.py
+│ ├── categoria_controller.py
+│ ├── produto_controller.py
+│ ├── fornecedor_controller.py
+│ ├── cliente_controller.py
+│ ├── funcionario_controller.py
+│ └── caixa_controller.py
 │
-├── model/
-│   ├── categoria.py
-│   ├── produto.py
-│   ├── fornecedor.py
-│   ├── cliente.py
-│   ├── funcionario.py
-│   └── venda.py
+├── modelo/
+│ ├── categoria.py
+│ ├── produto.py
+│ ├── fornecedor.py
+│ ├── cliente.py
+│ ├── funcionario.py
+│ └── venda.py
 │
 ├── dal/
-│   ├── categoria_dal.py
-│   ├── produto_dal.py
-│   ├── fornecedor_dal.py
-│   ├── cliente_dal.py
-│   ├── funcionario_dal.py
-│   └── venda_dal.py
+│ ├── categoria_dal.py
+│ ├── produto_dal.py
+│ ├── fornecedor_dal.py
+│ ├── cliente_dal.py
+│ ├── funcionario_dal.py
+│ └── venda_dal.py
 │
-├── view/
-│   └── menu_principal.py
+├── visualizar/
+│ └── menu_principal.py
 │
-├── data/
-│   ├── categorias.txt
-│   ├── produtos.txt
-│   ├── fornecedores.txt
-│   ├── clientes.txt
-│   ├── funcionarios.txt
-│   └── vendas.txt
+├── dados/
+│ ├── categorias.txt
+│ ├── produtos.txt
+│ ├── fornecedores.txt
+│ ├── clientes.txt
+│ ├── funcionarios.txt
+│ └── vendas.txt
 │
-├── reports/
-│   ├── relatorio_vendas.py
-│   ├── relatorio_produtos.py
-│   └── relatorio_clientes.py
+├── relatórios/
+│ ├── relatorio_vendas.py
+│ ├── relatorio_produtos.py
+│ └── relatorio_clientes.py
 │
 ├── README.md
 └── main.py
 ```
 
-## Contributing
+## Contribuindo
 
-This is a personal study project. Feel free to fork and adapt for your own learning purposes.
+Este é um projeto de estudo pessoal. Sinta-se à vontade para criar um fork e adaptá-lo para seus próprios propósitos de aprendizado.
