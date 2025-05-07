@@ -1,6 +1,6 @@
 # 🛒 Sistema de Gestão de Mercearia
 
-[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/) 
 
 Um sistema completo de gestão de mercearia desenvolvido em **Python puro**, implementando o padrão de arquitetura MVC (Model-View-Controller) e utilizando arquivos `.txt` como base de dados para fins de estudo e aprendizado.
 
