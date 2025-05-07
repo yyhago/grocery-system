@@ -1,122 +1,153 @@
-# Sistema de Gestão de Mercearia
+# 🛒 Sistema de Gestão de Mercearia
 
-Um sistema abrangente de gestão construido em Python, projetado para gerenciar estoque, vendas, funcionários e gerar relatórios.
+[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
 
-## Visão Geral
+Um sistema completo de gestão de mercearia desenvolvido em **Python puro**, implementando o padrão de arquitetura MVC (Model-View-Controller) e utilizando arquivos `.txt` como base de dados para fins de estudo e aprendizado.
 
-Este projeto é uma aplicação de estudo pessoal que visa criar uma solução completa de gestão de supermercados. O sistema gerencia vários aspectos de um negócio de supermercados, incluindo estoque de produtos, transações de vendas, relacionamento com clientes e gestão de funcionários.
+## 📋 Visão Geral
 
-## Recursos
+Este projeto é um estudo pessoal focado na implementação de um sistema de gestão de mercearia com arquitetura limpa e bem estruturada. O objetivo principal foi aplicar conceitos de programação orientada a objetos, padrões de projeto, organização de código, e treinar a lógica, sem depender de frameworks ou bancos de dados complexos.
 
-### Gerenciamento de Entidades
-- **Gerenciamento de Categorias**
-- Adicionar/Editar/Excluir categorias de produtos
-- Organizar produtos por categoria
+### 🎯 Objetivos de Aprendizado
+- Implementar uma arquitetura MVC completa em Python
+- Desenvolver um CRUD funcional utilizando arquivos `.txt` como persistência de dados
+- Praticar separação de responsabilidades entre camadas do sistema
+- Aplicar boas práticas de desenvolvimento de software
 
-- **Gerenciamento de Produtos**
-- Adicionar/Editar/Excluir produtos
-- Atribuir produtos a categorias
-- Acompanhar os níveis de estoque
+## ⚙️ Características Principais
 
-- **Gerenciamento de Fornecedores**
-- Adicionar/Editar/Excluir fornecedores
-- Acompanhar informações e produtos de fornecedores
+### 📦 Gerenciamento de Entidades
 
-- **Gerenciamento de Clientes**
-- Adicionar/Editar/Excluir registros de clientes
-- Acompanhar o histórico de compras dos clientes
+#### Categorias
+- Criar, visualizar, atualizar e excluir categorias
+- Organização de produtos por categorias específicas
 
-- **Gerenciamento de Funcionários**
-- Adicionar/Editar/Excluir informações de funcionários
-- Gerenciar acessos e funções de funcionários
+#### Produtos
+- Gerenciamento completo do catálogo de produtos
+- Controle de estoque com alertas de níveis baixos
+- Associação com categorias e fornecedores
 
-### Sistema de Ponto de Venda
-- Processar transações de clientes
-- Calcular totais com impostos
-- Aplicar descontos
-- Gerenciar devoluções de produtos
+#### Fornecedores
+- Cadastro e manutenção de fornecedores
+- Associação de produtos com seus respectivos fornecedores
+- Histórico de entregas e informações de contato
 
-### Relatórios
-- **Relatório Geral de Vendas**
-- Visão geral de todas as transações de vendas
-- Métricas de receita total
+#### Clientes
+- Gestão de cadastro de clientes
+- Histórico de compras por cliente
+- Sistema de fidelidade (pontuação)
 
-- **Relatório de Vendas por Data**
-- Filtrar dados de vendas por datas ou intervalos de datas específicos
-- Desempenho de vendas diário/semanal/mensal
+#### Funcionários
+- Controle de acesso ao sistema
+- Níveis de permissão por função
+- Registro de operações realizadas
 
-- **Produtos Mais Vendidos Relatório**
-- Produtos classificados por volume de vendas
-- Produtos mais rentáveis
+### 💵 Sistema de Ponto de Venda (PDV)
+- Interface intuitiva para processar vendas
+- Cálculo automático de preços, impostos e descontos
+- Gestão de devoluções e trocas
 
-- **Relatório de Principais Clientes**
-- Clientes classificados por volume de compras
-- Análise da frequência de compra dos clientes
+### 📊 Relatórios Gerenciais
+- Vendas por período (diário/semanal/mensal)
+- Produtos mais vendidos e mais rentáveis
+- Desempenho de vendas por categoria
+- Análise de clientes e comportamento de compra
 
-## Pilha de Tecnologia
+## 🏗️ Arquitetura MVC
 
-- **Backend**: Python
-- **Banco de Dados**: .txt
+O sistema segue rigorosamente o padrão arquitetural MVC, com adição de uma camada DAL (Data Access Layer):
 
-## Instalação
+- **Model**: Definição das entidades de negócio e suas regras
+- **View**: Interface com o usuário via terminal
+- **Controller**: Coordenação entre Model e View, processamento de lógica de negócio
+- **DAL**: Camada de acesso aos dados armazenados nos arquivos `.txt`
 
-```bash
-# Clonar o repositório
-git clone https://github.com/yyhago/grocery-system.git
-
-# Navegar até o diretório do projeto
-cd grocery-system
-```
-
-## Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```
-MercadoManager/
+grocery-system/
 │
-├── controller/
-│ ├── categoria_controller.py
-│ ├── produto_controller.py
-│ ├── fornecedor_controller.py
-│ ├── cliente_controller.py
-│ ├── funcionario_controller.py
-│ └── caixa_controller.py
+├── controller/              # Controladores para lógica de negócio
+│   ├── categoria_controller.py
+│   ├── produto_controller.py
+│   ├── fornecedor_controller.py
+│   ├── cliente_controller.py
+│   ├── funcionario_controller.py
+│   └── caixa_controller.py
 │
-├── modelo/
-│ ├── categoria.py
-│ ├── produto.py
-│ ├── fornecedor.py
-│ ├── cliente.py
-│ ├── funcionario.py
-│ └── venda.py
+├── model/                   # Definição das entidades e regras
+│   ├── categoria.py
+│   ├── produto.py
+│   ├── fornecedor.py
+│   ├── cliente.py
+│   ├── funcionario.py
+│   └── venda.py
 │
-├── dal/
-│ ├── categoria_dal.py
-│ ├── produto_dal.py
-│ ├── fornecedor_dal.py
-│ ├── cliente_dal.py
-│ ├── funcionario_dal.py
-│ └── venda_dal.py
+├── dal/                     # Camada de acesso a dados
+│   ├── categoria_dal.py
+│   ├── produto_dal.py
+│   ├── fornecedor_dal.py
+│   ├── cliente_dal.py
+│   ├── funcionario_dal.py
+│   └── venda_dal.py
 │
-├── visualizar/
-│ └── menu_principal.py
+├── view/                    # Interface com usuário
+│   └── menu_principal.py    # Ponto de entrada da aplicação
 │
-├── dados/
-│ ├── categorias.txt
-│ ├── produtos.txt
-│ ├── fornecedores.txt
-│ ├── clientes.txt
-│ ├── funcionarios.txt
-│ └── vendas.txt
+├── data/                    # Armazenamento em arquivos .txt
+│   ├── categorias.txt
+│   ├── produtos.txt
+│   ├── fornecedores.txt
+│   ├── clientes.txt
+│   ├── funcionarios.txt
+│   └── vendas.txt
 │
-├── relatórios/
-│ ├── relatorio_vendas.py
-│ ├── relatorio_produtos.py
-│ └── relatorio_clientes.py
+├── reports/                 # Geração de relatórios
+│   ├── relatorio_vendas.py
+│   ├── relatorio_produtos.py
+│   └── relatorio_clientes.py
 │
 ├── README.md
-└── main.py
 ```
 
-## Contribuindo
+## 💾 Armazenamento de Dados
 
-Este é um projeto de estudo pessoal. Sinta-se à vontade para criar um fork e adaptá-lo para seus próprios propósitos de aprendizado.
+Em vez de utilizar um SGBD tradicional, este projeto emprega **arquivos `.txt`** como mecanismo de persistência para fins de estudo:
+
+- Cada entidade possui seu próprio arquivo de armazenamento
+- Implementação de operações CRUD diretamente nos arquivos
+- Operações atômicas para garantir integridade dos dados
+- Serialização e deserialização de objetos para texto
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+- Python 3.6 ou superior
+
+### Instalação
+
+```bash
+# Clone o repositório
+git clone https://github.com/yyhago/grocery-system.git
+
+# Navegue até o diretório do projeto
+cd grocery-system
+
+# Execute o sistema
+python main.py
+```
+
+## 📝 Aprendizados e Considerações
+
+Este projeto foi desenvolvido com propósito educacional e demonstra:
+
+- **Aplicação prática de padrões de design**: MVC implementado em Python puro
+- **Persistência sem frameworks**: Manipulação direta de arquivos como alternativa a ORMs
+- **Separação de responsabilidades**: Código organizado em camadas distintas
+- **Programação orientada a objetos**: Uso de classes, herança e encapsulamento
+
+Para um ambiente de produção real, seria recomendável utilizar um banco de dados relacional ou NoSQL para maior escalabilidade, segurança e performance.
+
+## 📜 Licença
+
+Este projeto é um estudo pessoal e está disponível para qualquer pessoa que deseje aprender sobre desenvolvimento de sistemas em Python e padrões de arquitetura de software.
